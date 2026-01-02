@@ -24,7 +24,7 @@ la gestion des pages (BufferManager), et un moteur SQL basique.
 ### 4. DONNEES
 Pour le respect des consignes de rendu, les fichiers de données volumineux (.csv) peuvent avoir été retirés de l'archive. 
 AVANT de lancer les tests ou les scénarios, veuillez vous assurer que les fichiers suivants sont présents à la RACINE du projet :
-- R.csv, S.csv, T.csv, V.csv
+- R.csv, S.csv, T.csv, V.csv, B.csv
 (Ces fichiers sont indispensables car le moteur de commande et les suites de tests les appellent par leurs noms respectifs).
 
 ### 5. COMPILATION
@@ -56,5 +56,6 @@ Note : Assurez-vous que ces fichiers existent avant de lancer la commande.
 - Nettoyage : L'archive a été vidée de tout fichier binaire généré (dossier BinData, catalogue.db). Le système les recréera proprement lors du premier lancement.
 - Persistance : Pour garantir que les données sont bien écrites sur le disque (Flush des buffers), utilisez toujours la commande 'EXIT' pour quitter le programme.
 - Flexibilité des noms : Le SGBD est générique. Si vous ajoutez vos propres fichiers .csv, assurez-vous de fournir le nom exact dans la commande IMPORT ou APPEND entre parenthèses, ex: APPEND INTO MaTable ALLRECORDS (MonFichier.csv).
+- Le script app.sh est configuré avec 2 Go de RAM alloués (-Xmx2g) pour supporter le chargement de fichiers volumineux (Scénarios Big Data).
 
 ================================================================# Projet-BDDA
