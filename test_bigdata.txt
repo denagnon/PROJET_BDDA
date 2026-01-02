@@ -1,0 +1,34 @@
+# --- SCÉNARIO CRASH TEST BIG DATA (Respect Consigne : Append x2) ---
+
+# 1. Création de la table (Format 10 colonnes alternées)
+CREATE TABLE BigTable (C1:INT,C2:FLOAT,C3:INT,C4:FLOAT,C5:INT,C6:FLOAT,C7:INT,C8:FLOAT,C9:INT,C10:FLOAT)
+
+# 2. DOUBLE IMPORT MASSIF
+# On importe deux fois le fichier pour atteindre 8 millions de records.
+# Cela va forcer le système à écrire/lire énormément sur le disque.
+APPEND INTO BigTable ALLRECORDS (B.csv)
+APPEND INTO BigTable ALLRECORDS (B.csv)
+
+# 3. SELECT (Test de lecture sur 8 millions de lignes)
+# On cherche C1=100. (Il y en avait 197 la première fois, donc on en attend 197 * 2 = 394)
+SELECT * FROM BigTable b WHERE b.C1 = 100
+
+# 4. UPDATE DE MASSE
+# On modifie ces 394 lignes éparpillées dans le fichier géant.
+UPDATE BigTable b SET b.C3 = 9999 WHERE b.C1 = 100
+
+# 5. VÉRIFICATION DE L'UPDATE
+# On vérifie que la modification a bien été persistée.
+SELECT * FROM BigTable b WHERE b.C3 = 9999
+
+# 6. DELETE DE MASSE
+# On supprime ces lignes pour tester la gestion des trous dans les pages.
+DELETE BigTable b WHERE b.C3 = 9999
+
+# 7. PREUVE DE SUPPRESSION
+# On doit trouver 0 record.
+SELECT * FROM BigTable b WHERE b.C1 = 100
+
+# 8. Nettoyage
+DROP TABLE BigTable
+EXIT
