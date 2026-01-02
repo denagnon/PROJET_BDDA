@@ -1,0 +1,5 @@
+dbpath: Scenario3
+pagesize: 4096
+dm_maxfilecount: 100
+bm_buffercount: 8
+bm_policy: LRU
