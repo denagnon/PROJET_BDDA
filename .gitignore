@@ -1,0 +1,9 @@
+bin/
+*.class
+BinData*/
+catalogue.db
+*.bin
+.settings/
+.project
+.classpath
+.DS_Store
