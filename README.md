@@ -45,7 +45,7 @@ Le SGBD nécessite obligatoirement deux fichiers en arguments :
 2. Un fichier de scénario/commandes
 
 Commande :
-    ./app.sh [CheminConfig] <[CheminScenario]
+    ./app.sh [CheminConfig] < [CheminScenario]
 
 Exemple d'utilisation :
     ./app.sh config.txt < commandes.sql
