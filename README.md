@@ -48,11 +48,26 @@ Commande :
     ./app.sh [CheminConfig] < [CheminScenario]
 
 Exemple d'utilisation :
-    ./app.sh config.txt < commandes.sql
+    ./app.sh config.txt < commandes.txt
 
 Note : Assurez-vous que ces fichiers existent avant de lancer la commande.
 
-### 8 NOTES IMPORTANTES (Vigilance Évaluateur)
+### 8. DÉMONSTRATION BIG DATA (Optimisation Mémoire)
+Ce projet intègre une gestion avancée de la mémoire (Pipelining via BufferManager), permettant de traiter des volumes de données bien supérieurs à la RAM disponible.
+
+Un script dédié a été créé pour démontrer cette capacité. Il effectue les actions suivantes :
+1. Compile le projet.
+2. Utiliser un jeu de données volumineux (`B.csv`).
+3. Lance le SGBD avec une **restriction stricte de 64 Mo de RAM** (`java -Xmx64m`).
+4. Exécute un scénario d'insertion massive et de filtrage.
+
+**Pour lancer la démonstration :**
+
+    ./demo_bigdata.sh
+
+*Note : La réussite de ce test sans erreur "OutOfMemory" valide que les données sont chargées et libérées page par page.*
+
+### 9 NOTES IMPORTANTES (Vigilance Évaluateur)
 - Nettoyage : L'archive a été vidée de tout fichier binaire généré (dossier BinData, catalogue.db). Le système les recréera proprement lors du premier lancement.
 - Persistance : Pour garantir que les données sont bien écrites sur le disque (Flush des buffers), utilisez toujours la commande 'EXIT' pour quitter le programme.
 - Flexibilité des noms : Le SGBD est générique. Si vous ajoutez vos propres fichiers .csv, assurez-vous de fournir le nom exact dans la commande IMPORT ou APPEND entre parenthèses, ex: APPEND INTO MaTable ALLRECORDS (MonFichier.csv).

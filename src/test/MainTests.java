@@ -29,13 +29,20 @@ public class MainTests {
         boolean tp6OK = TestDBManager.runTests();
         System.out.println("------------------------------------------");
 
+        boolean describeOK = TestDescribe.runTests();
+        System.out.println("------------------------------------------");
+
         // --- TP7 (Insert / Append) ---
         boolean tp7InsertOK = Test_Insert.runTests();
+        boolean robustesseOK = TestInsertRobustness.runTests();
+        System.out.println("------------------------------------------");
         boolean tp7AppendOK = Test_Append.runTests();
-        
+
+        System.out.println("------------------------------------------");
+
         // --- TP7 (Import S.csv) ---
         boolean sRealOK = Test_S_Real.runTests();
-        
+
         System.out.println("------------------------------------------");
 
         // --- TP7 (Select / Filtrage) ---
@@ -47,11 +54,11 @@ public class MainTests {
 
         // --- BILAN FINAL ---
         System.out.println("\n==========================================");
-        
-        if (configOK && diskOK && bufferOK && relationOK && 
-            tp5OK && heapOK && tp6OK && 
-            tp7InsertOK && tp7AppendOK && sRealOK && selectSOK && deleteOK && updateOK) {
-            
+
+        if (configOK && diskOK && bufferOK && relationOK &&
+                tp5OK && describeOK && heapOK && tp6OK &&
+                tp7InsertOK && robustesseOK && tp7AppendOK && sRealOK && selectSOK && deleteOK && updateOK) {
+
             System.out.println("✅  SUCCÈS GLOBAL : TOUS LES SYSTÈMES SONT OPÉRATIONNELS");
             System.exit(0);
         } else {
