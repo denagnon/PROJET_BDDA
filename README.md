@@ -1,7 +1,7 @@
 ================================================================
                      PROJET SGBD (Mini-SGBD)
 ================================================================
-Auteur(s) : NOEL Samuel; BEN NAJEM Brahim; DENAGNON Marwan
+Auteurs : NOEL Samuel; BEN NAJEM Brahim; DENAGNON Marwan
 Langage   : Java
 Date      :  Décembre 2025
 ================================================================
